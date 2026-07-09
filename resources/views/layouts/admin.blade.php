@@ -21,35 +21,47 @@
 
         <nav class="mt-6">
 
-            <a href="#" class="block px-6 py-3 hover:bg-slate-700">
+            <a href="{{ route('dashboard') }}" class="block px-6 py-3 hover:bg-slate-700">
                 Dashboard
             </a>
 
-            <a href="{{ route('users.index') }}" class="block px-6 py-3 hover:bg-slate-700">
-                Usuários
-            </a>
+            @role('Administrador')
 
-            <a href="#" class="block px-6 py-3 hover:bg-slate-700">
-                Permissões
-            </a>
+                <a href="{{ route('users.index') }}" class="block px-6 py-3 hover:bg-slate-700">
+                    Usuários
+                </a>
+
+                <a href="{{ route('permissions.index') }}" class="block px-6 py-3 hover:bg-slate-700">
+                    Permissões
+                </a>
+
+            @endrole
 
             <hr class="my-4 border-slate-700">
 
-            <a href="#" class="block px-6 py-3 hover:bg-slate-700">
-                Setores Hospitalares
-            </a>
+            @can('modulo.setores')
+                <a href="{{ route('setores.index') }}" class="block px-6 py-3 hover:bg-slate-700">
+                    Setores Hospitalares
+                </a>
+            @endcan
 
-            <a href="#" class="block px-6 py-3 hover:bg-slate-700">
-                Especialidades Médicas
-            </a>
+            @can('modulo.especialidades')
+                <a href="{{ route('especialidades.index') }}" class="block px-6 py-3 hover:bg-slate-700">
+                    Especialidades Médicas
+                </a>
+            @endcan
 
-            <a href="#" class="block px-6 py-3 hover:bg-slate-700">
-                Equipamentos
-            </a>
+            @can('modulo.equipamentos')
+                <a href="{{ route('equipamentos.index') }}" class="block px-6 py-3 hover:bg-slate-700">
+                    Equipamentos
+                </a>
+            @endcan
 
-            <a href="#" class="block px-6 py-3 hover:bg-slate-700">
-                Unidades Assistenciais
-            </a>
+            @can('modulo.unidades')
+                <a href="{{ route('unidades.index') }}" class="block px-6 py-3 hover:bg-slate-700">
+                    Unidades Assistenciais
+                </a>
+            @endcan
 
         </nav>
 
@@ -64,9 +76,21 @@
                 Sistema Administrativo
             </h1>
 
-            <div>
+            <div class="flex items-center gap-4">
 
-                {{ Auth::user()->name }}
+                <span>
+                    {{ Auth::user()->name }}
+                </span>
+
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+
+                    <button
+                        type="submit"
+                        class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">
+                        Sair
+                    </button>
+                </form>
 
             </div>
 

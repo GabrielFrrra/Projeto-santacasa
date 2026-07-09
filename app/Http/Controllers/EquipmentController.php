@@ -12,9 +12,9 @@ class EquipmentController extends Controller
      */
     public function index()
     {
-        $equipment = Equipment::orderBy('name')->get();
+        $equipments = Equipment::orderBy('name')->get();
 
-        return view('equipment.index', compact('equipment'));
+        return view('equipment.index', compact('equipments'));
     }
 
     /**

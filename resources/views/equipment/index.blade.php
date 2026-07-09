@@ -27,18 +27,18 @@
         </thead>
 
         <tbody>
-        @forelse($sectors as $sector)
+        @forelse($equipments as $equipment)
             <tr class="border-t">
-                <td class="px-4 py-3">{{ $sector->name }}</td>
+                <td class="px-4 py-3">{{ $equipment->name }}</td>
 
                 <td class="px-4 py-3 text-center">
                     <div class="flex justify-center gap-3">
-                        <a href="{{ route('equipamentos.edit', $sector) }}"
+                        <a href="{{ route('equipamentos.edit', $equipment) }}"
                            class="text-blue-600 hover:underline">
                             Editar
                         </a>
 
-                        <form action="{{ route('equipamentos.destroy', $sector) }}"
+                        <form action="{{ route('equipamentos.destroy', $equipment) }}"
                               method="POST"
                               onsubmit="return confirm('Deseja realmente excluir este equipamento?')">
                             @csrf

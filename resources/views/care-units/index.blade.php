@@ -27,9 +27,9 @@
         </thead>
 
         <tbody>
-        @forelse($sectors as $sector)
+        @forelse($careUnits as $careUnit)
             <tr class="border-t">
-                <td class="px-4 py-3">{{ $sector->name }}</td>
+                <td class="px-4 py-3">{{ $careUnit->name }}</td>
 
                 <td class="px-4 py-3 text-center">
                     <div class="flex justify-center gap-3">

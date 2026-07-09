@@ -31,9 +31,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
 
-    Route::resource('users', UserController::class);
+    Route::resource('users', UserController::class)
+        ->middleware('role:Administrador');
 
-    Route::resource('permissions', PermissionController::class);
+    Route::resource('permissions', PermissionController::class)
+        ->middleware('role:Administrador');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
