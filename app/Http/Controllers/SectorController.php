@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Equipment;
+use App\Models\Sector;
 use Illuminate\Http\Request;
 
-class EquipmentController extends Controller
+class SectorController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $equipment = Equipment::orderBy('name')->get();
+        $sectors = Sector::orderBy('name')->get();
 
-        return view('equipment.index', compact('equipment'));
+        return view('sectors.index', compact('sectors'));
     }
 
     /**
@@ -22,7 +22,7 @@ class EquipmentController extends Controller
      */
     public function create()
     {
-        return view('equipment.create');
+        return view('sectors.create');
     }
 
     /**
@@ -34,11 +34,11 @@ class EquipmentController extends Controller
             'name' => ['required', 'string', 'max:255'],
         ]);
 
-        Equipment::create($validated);
+        Sector::create($validated);
 
         return redirect()
-            ->route('equipamentos.index')
-            ->with('success', 'Equipamento cadastrado com sucesso.');
+            ->route('setores.index')
+            ->with('success', 'Setor cadastrado com sucesso.');
     }
 
 
@@ -53,38 +53,38 @@ class EquipmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Equipment $equipment)
+    public function edit(Sector $setore)
     {
-        return view('equipment.edit', [
-            'equipment' => $equipment,
+        return view('sectors.edit', [
+            'sector' => $setore,
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Equipment $equipment)
+    public function update(Request $request, Sector $setore)
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
         ]);
 
-        $equipment->update($validated);
+        $setore->update($validated);
 
         return redirect()
-            ->route('equipamentos.index')
-            ->with('success', 'Equipamento atualizado com sucesso.');
+            ->route('setores.index')
+            ->with('success', 'Setor atualizado com sucesso.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Equipment $equipment)
+    public function destroy(Sector $setore)
     {
-        $equipment->delete();
+        $setore->delete();
 
         return redirect()
-            ->route('equipamentos.index')
-            ->with('success', 'Equipamento excluído com sucesso.');
+            ->route('setores.index')
+            ->with('success', 'Setor excluído com sucesso.');
     }
 }
