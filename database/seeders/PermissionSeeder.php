@@ -38,9 +38,21 @@ class PermissionSeeder extends Seeder
             ]);
         }
 
-        Role::firstOrCreate([
+        $adminRole = Role::firstOrCreate([
             'name' => 'Administrador',
             'guard_name' => 'web',
+        ]);
+
+        $adminRole->syncPermissions([
+            'users.index',
+            'users.create',
+            'users.edit',
+            'users.delete',
+
+            'permissions.index',
+            'permissions.create',
+            'permissions.edit',
+            'permissions.delete',
         ]);
 
         Role::firstOrCreate([

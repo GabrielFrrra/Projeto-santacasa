@@ -25,7 +25,7 @@
                 Dashboard
             </a>
 
-            <a href="#" class="block px-6 py-3 hover:bg-slate-700">
+            <a href="{{ route('users.index') }}" class="block px-6 py-3 hover:bg-slate-700">
                 Usuários
             </a>
 
